@@ -1,13 +1,13 @@
 <?php
 
-namespace einfachArchiv\Extractor\ReferenceId;
+namespace einfachArchiv\Extractor\PaymentReference;
 
 use einfachArchiv\Extractor\Extraction;
 
 class De extends Extraction
 {
     /**
-     * Extracts reference IDs from the text.
+     * Extracts payment references from the text.
      *
      * @return array
      */

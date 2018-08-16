@@ -85,13 +85,13 @@ class Extractor extends Extraction
     }
 
     /**
-     * Extracts reference IDs from the text.
+     * Extracts payment references from the text.
      *
      * @return array
      */
-    public function findReferenceIds()
+    public function findPaymentReferences()
     {
-        return (new ReferenceId($this->text, $this->locales))->handle();
+        return (new PaymentReference($this->text, $this->locales))->handle();
     }
 
     /**

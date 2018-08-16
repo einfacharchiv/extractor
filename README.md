@@ -40,7 +40,7 @@ $extractor->findDates();
 $extractor->findEmails();
 $extractor->findIbans();
 $extractor->findInvoiceIds();
-$extractor->findReferenceIds();
+$extractor->findPaymentReferences();
 $extractor->findTaxNumbers();
 $extractor->findTypes();
 $extractor->findVatNumbers();

@@ -2,6 +2,6 @@
 
 namespace einfachArchiv\Extractor;
 
-class ReferenceId extends Extraction
+class PaymentReference extends Extraction
 {
 }
