@@ -1,0 +1,33 @@
+{
+    "name": "einfacharchiv/extractor",
+    "description": "Extract billing data from text",
+    "keywords": [
+        "einfachArchiv",
+        "php",
+        "text",
+        "billing",
+        "data",
+        "extraction"
+    ],
+    "type": "library",
+    "homepage": "https://github.com/einfachArchiv/extractor",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Philip Günther",
+            "email": "philip.guenther@einfacharchiv.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": "^7.0",
+        "ronanguilloux/isocodes": "^2.1",
+        "league/iso3166": "^2.1",
+        "commerceguys/intl": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "einfachArchiv\\Extractor\\": "src/"
+        }
+    }
+}
