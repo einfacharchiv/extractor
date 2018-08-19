@@ -34,6 +34,7 @@ $extractor = new \einfachArchiv\Extractor\Extractor($text, ['de', 'en']);
 // Available methods
 $extractor->findAmounts();
 $extractor->findBics();
+$extractor->findCompanyNames();
 $extractor->findCompanyRegisterIds();
 $extractor->findCustomerIds();
 $extractor->findDates();
@@ -108,7 +109,6 @@ The method `->findTypes()` returns the following types:
     'contract',
     'balance-sheet',
     'tax-assessment-note',
-    ...
 ];
 ```
 

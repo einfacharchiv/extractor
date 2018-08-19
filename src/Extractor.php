@@ -25,6 +25,16 @@ class Extractor extends Extraction
     }
 
     /**
+     * Extracts company names from the text.
+     *
+     * @return array
+     */
+    public function findCompanyNames()
+    {
+        return (new CompanyName($this->text, $this->locales))->handle();
+    }
+
+    /**
      * Extracts company register IDs from the text.
      *
      * @return array
