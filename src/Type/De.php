@@ -15,7 +15,7 @@ class De extends Extraction
     {
         $extractions = [];
 
-        preg_match_all('/\b(?:Rechnung|Gutschrift|Mahnung|Lohnauswertung|Abrechnung ?der ?Brutto\/Netto-Bezüge|Kontoauszug|Vertrag|Bilanz|Bescheid|Gewerbesteuer)\b/i', $this->text, $matches);
+        preg_match_all('/\b(?:Rechnung|Gutschrift|Mahnung|Lohnauswertung|Abrechnung ?der ?Brutto\/Netto-Bezüge|Kontoauszug|Vertrag|Bilanz|Vorauszahlungsbescheid|Bescheid|Gewerbesteuer)\b/i', $this->text, $matches);
 
         // Supporting terms
         preg_match_all('/\b(?:Finanzamt|Stadt|Gemeinde)\b/i', $this->text, $supportingMatches);
@@ -57,9 +57,12 @@ class De extends Extraction
                     $extractions[] = 'balance-sheet';
                     break;
 
+                case 'vorauszahlungsbescheid':
                 case 'bescheid':
                     if (in_array('finanzamt', $supportingMatches[0])) {
                         $extractions[] = 'tax-assessment-note';
+                    } else {
+                        $extractions[] = 'invoice';
                     }
                     break;
 
