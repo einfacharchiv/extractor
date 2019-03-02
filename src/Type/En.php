@@ -20,23 +20,42 @@ class En extends Extraction
         foreach ($matches[0] as $value) {
             $value = strtolower($value);
 
-            $value = str_replace(' ', '-', $value);
-
             switch ($value) {
-                case 'pay-slip':
-                    $value = 'salary-statement';
+                case 'invoice':
+                    $extractions[] = 'invoice';
                     break;
 
-                case 'checking-account':
-                    $value = 'bank-statement';
+                case 'credit note':
+                    $extractions[] = 'credit-note';
                     break;
 
-                case 'tax-return':
-                    $value = 'tax-assessment-note';
+                case 'reminder':
+                    $extractions[] = 'reminder';
+                    break;
+
+                case 'salary statement':
+                case 'pay slip':
+                    $extractions[] = 'salary-statement';
+                    break;
+
+                case 'bank statement':
+                case 'checking account':
+                    $extractions[] = 'bank-statement';
+                    break;
+
+                case 'contract':
+                    $extractions[] = 'contract';
+                    break;
+
+                case 'balance sheet':
+                    $extractions[] = 'balance-sheet';
+                    break;
+
+                case 'tax assessment note':
+                case 'tax return':
+                    $extractions[] = 'tax-assessment-note';
                     break;
             }
-
-            $extractions[] = $value;
         }
 
         return $extractions;

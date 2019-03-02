@@ -15,48 +15,61 @@ class De extends Extraction
     {
         $extractions = [];
 
-        preg_match_all('/\b(?:Rechnung|Gutschrift|Mahnung|Lohnauswertung|Abrechnung ?der ?Brutto\/Netto-Bezüge|Kontoauszug|Vertrag|Bilanz|Bescheid)\b/i', $this->text, $matches);
+        preg_match_all('/\b(?:Rechnung|Gutschrift|Mahnung|Lohnauswertung|Abrechnung ?der ?Brutto\/Netto-Bezüge|Kontoauszug|Vertrag|Bilanz|Bescheid|Gewerbesteuer)\b/i', $this->text, $matches);
+
+        // Supporting terms
+        preg_match_all('/\b(?:Finanzamt|Stadt|Gemeinde)\b/i', $this->text, $supportingMatches);
+        $supportingMatches[0] = array_map(function ($term) {
+            return strtolower($term);
+        }, $supportingMatches[0]);
 
         foreach ($matches[0] as $value) {
             $value = strtolower($value);
 
             switch ($value) {
                 case 'rechnung':
-                    $value = 'invoice';
+                    $extractions[] = 'invoice';
                     break;
 
                 case 'gutschrift':
-                    $value = 'credit-note';
+                    $extractions[] = 'credit-note';
                     break;
 
                 case 'mahnung':
-                    $value = 'reminder';
+                    $extractions[] = 'reminder';
                     break;
 
                 case 'lohnauswertung':
                 case 'abrechnungderbrutto/netto-bezüge':
                 case 'abrechnung der brutto/netto-bezüge':
-                    $value = 'salary-statement';
+                    $extractions[] = 'salary-statement';
                     break;
 
                 case 'kontoauszug':
-                    $value = 'bank-statement';
+                    $extractions[] = 'bank-statement';
                     break;
 
                 case 'vertrag':
-                    $value = 'contract';
+                    $extractions[] = 'contract';
                     break;
 
                 case 'bilanz':
-                    $value = 'balance-sheet';
+                    $extractions[] = 'balance-sheet';
                     break;
 
                 case 'bescheid':
-                    $value = 'tax-assessment-note';
+                    if (in_array('finanzamt', $supportingMatches[0])) {
+                        $extractions[] = 'tax-assessment-note';
+                    }
+                    break;
+
+                case 'gewerbesteuer':
+                    if (in_array('stadt', $supportingMatches[0]) ||
+                        in_array('gemeinde', $supportingMatches[0])) {
+                        $extractions[] = 'tax-assessment-note';
+                    }
                     break;
             }
-
-            $extractions[] = $value;
         }
 
         return $extractions;
