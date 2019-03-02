@@ -15,6 +15,7 @@ class En extends Extraction
     {
         $extractions = [];
 
+        // F d, Y
         preg_match_all('/\b[A-Z][a-z]+ [0-3]?[0-9], [0-9]{4}\b/', $this->text, $matches);
 
         foreach ($matches[0] as $date) {
