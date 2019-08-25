@@ -13,7 +13,7 @@ class De extends Extraction
      */
     public function handle()
     {
-        preg_match_all('/\b[A-ZÄÖÜßa-zäöü ]+ (?:GbR\b|OHG\b|GmbH & Co. KG\b|KG\b|Unternehmergesellschaft \(haftungsbeschränkt\)|UG \(haftungsbeschränkt\)|UG\b|GmbH\b|AG\b)/', $this->text, $matches);
+        preg_match_all('/\b[A-ZÄÖÜßa-zäöü ]+ (?:GbR\b|OHG\b|GmbH & Co. KG\b|UG & Co. KG\b|KG\b|Unternehmergesellschaft \(haftungsbeschränkt\)|UG \(haftungsbeschränkt\)|UG\b|GmbH\b|AG\b)/', $this->text, $matches);
 
         return $matches[0];
     }
