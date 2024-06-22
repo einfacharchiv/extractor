@@ -20,7 +20,7 @@
     ],
     "minimum-stability": "stable",
     "require": {
-        "php": "~7.0",
+        "php": "^7.0 || ^8.0",
         "ronanguilloux/isocodes": "~2.1",
         "league/iso3166": "~2.1",
         "commerceguys/intl": "~1.0"
