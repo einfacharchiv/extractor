@@ -22,7 +22,7 @@
     "require": {
         "php": "^7.0 || ^8.0",
         "ronanguilloux/isocodes": "~2.1",
-        "league/iso3166": "~2.1",
+        "league/iso3166": "^4.3",
         "commerceguys/intl": "~1.0"
     },
     "autoload": {
