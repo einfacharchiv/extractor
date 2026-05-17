@@ -15,6 +15,36 @@ class Extractor extends Extraction
     }
 
     /**
+     * Extracts labeled total amounts from the text.
+     *
+     * @return array
+     */
+    public function findTotalAmounts()
+    {
+        return (new TotalAmount($this->text, $this->locales))->handle();
+    }
+
+    /**
+     * Extracts labeled net amounts from the text.
+     *
+     * @return array
+     */
+    public function findNetAmounts()
+    {
+        return (new NetAmount($this->text, $this->locales))->handle();
+    }
+
+    /**
+     * Extracts labeled tax amounts from the text.
+     *
+     * @return array
+     */
+    public function findTaxAmounts()
+    {
+        return (new TaxAmount($this->text, $this->locales))->handle();
+    }
+
+    /**
      * Extracts BICs from the text.
      *
      * @return array
@@ -62,6 +92,26 @@ class Extractor extends Extraction
     public function findDates()
     {
         return (new Date($this->text, $this->locales))->handle();
+    }
+
+    /**
+     * Extracts invoice dates from the text.
+     *
+     * @return array
+     */
+    public function findInvoiceDates()
+    {
+        return (new InvoiceDate($this->text, $this->locales))->handle();
+    }
+
+    /**
+     * Extracts due dates from the text.
+     *
+     * @return array
+     */
+    public function findDueDates()
+    {
+        return (new DueDate($this->text, $this->locales))->handle();
     }
 
     /**
