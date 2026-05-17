@@ -16,8 +16,8 @@ class En extends LabeledAmount
         return $this->findLabeledAmounts([
             '\bVAT\b',
             '\bSales\s+tax\b',
+            '\bTotal\s+tax\b',
             '\bTax\s+amount\b',
-            '\bTax\b',
         ]);
     }
 }

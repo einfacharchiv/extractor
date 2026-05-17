@@ -25,29 +25,40 @@ class De extends Extraction
         }
 
         // d. F Y
-        preg_match_all('/\b[0-9]{1,2}\. [A-Z][a-z]+ [0-9]{4}\b/', $this->text, $matches);
+        preg_match_all('/\b[0-9]{1,2}\. [[:alpha:].]+ [0-9]{4}\b/u', $this->text, $matches);
 
-        $search = [];
-        $replace = [];
+        $search = [
+            'Januar', 'Jan.',
+            'Februar', 'Feb.',
+            'März', 'Mär.', 'Mrz.', 'Mär', 'Mrz',
+            'April', 'Apr.',
+            'Mai',
+            'Juni', 'Jun.',
+            'Juli', 'Jul.',
+            'August', 'Aug.',
+            'September', 'Sept.', 'Sep.',
+            'Oktober', 'Okt.',
+            'November', 'Nov.',
+            'Dezember', 'Dez.',
+        ];
 
-        $originalLocale = setlocale(LC_TIME, 0);
-
-        setlocale(LC_TIME, 'de_DE');
-        for ($m = 1; $m <= 12; ++$m) {
-            $search[] = strftime('%B', mktime(0, 0, 0, $m, 1));
-            $search[] = strftime('%b', mktime(0, 0, 0, $m, 1));
-        }
-
-        setlocale(LC_TIME, 'en_US');
-        for ($m = 1; $m <= 12; ++$m) {
-            $replace[] = strftime('%B', mktime(0, 0, 0, $m, 1));
-            $replace[] = strftime('%b', mktime(0, 0, 0, $m, 1));
-        }
-
-        setlocale(LC_TIME, $originalLocale);
+        $replace = [
+            'January', 'Jan',
+            'February', 'Feb',
+            'March', 'Mar', 'Mar', 'Mar', 'Mar',
+            'April', 'Apr',
+            'May',
+            'June', 'Jun',
+            'July', 'Jul',
+            'August', 'Aug',
+            'September', 'Sep', 'Sep',
+            'October', 'Oct',
+            'November', 'Nov',
+            'December', 'Dec',
+        ];
 
         foreach ($matches[0] as $date) {
-            $date = str_replace($search, $replace, $date);
+            $date = str_ireplace($search, $replace, $date);
 
             if (false !== strtotime($date)) {
                 $extractions[] = $date;

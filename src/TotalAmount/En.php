@@ -20,7 +20,7 @@ class En extends LabeledAmount
             '\bInvoice\s+total\b',
             '\bAmount\s+due\b',
             '\bBalance\s+due\b',
-            '\bTotal\b',
+            '^\s*Total\b(?!\s+(?:VAT|tax|allocated|before|after|excl|incl))',
         ]);
     }
 }
