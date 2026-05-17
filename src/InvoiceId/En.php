@@ -13,7 +13,7 @@ class En extends Extraction
      */
     public function handle()
     {
-        preg_match_all('/\b(?:Invoice Number:?\s|Invoice #\s?)([0-9A-Z-_\/]+)\b/i', $this->text, $matches);
+        preg_match_all('/\b(?:VAT[^\S\r\n]+Invoice[^\S\r\n]+Number|Invoice[^\S\r\n]+Number|Invoice[^\S\r\n]+No\.?|Invoice[^\S\r\n]+#|Document[^\S\r\n]+Number|Invoice)[^\S\r\n]*[:#]?[^\S\r\n]*([0-9A-Z][0-9A-Z._\-\/]*[0-9][0-9A-Z._\-\/]*)\b/i', $this->text, $matches);
 
         return $matches[1];
     }

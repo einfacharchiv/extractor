@@ -33,11 +33,16 @@ $extractor = new \einfachArchiv\Extractor\Extractor($text, ['de', 'en']);
 
 // Available methods
 $extractor->findAmounts();
+$extractor->findTotalAmounts();
+$extractor->findNetAmounts();
+$extractor->findTaxAmounts();
 $extractor->findBics();
 $extractor->findCompanyNames();
 $extractor->findCompanyRegisterIds();
 $extractor->findCustomerIds();
 $extractor->findDates();
+$extractor->findInvoiceDates();
+$extractor->findDueDates();
 $extractor->findEmails();
 $extractor->findIbans();
 $extractor->findInvoiceIds();
